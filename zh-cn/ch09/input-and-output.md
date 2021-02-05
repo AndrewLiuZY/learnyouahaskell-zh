@@ -1024,7 +1024,7 @@ view :: [String] -> IO ()
 view [fileName] = do
     contents <- readFile fileName
     let todoTasks = lines contents
-        numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] todoTasks
+    let numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] todoTasks
     putStr $ unlines numberedTasks
 
 remove :: [String] -> IO ()
