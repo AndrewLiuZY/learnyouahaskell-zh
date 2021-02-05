@@ -950,7 +950,7 @@ main = do
 
 首先，我们取出引数并把他们绑定到 `(command:args)`。如果你还记得 pattern matching，这么做会把第一个引数绑定到 `command`，把其他的绑定到 `args`。如果我们像这样执行程序 `todo add todo.txt "Spank the monkey"`，`command` 会变成 `"add"`，而 `args` 会变成 `["todo.txt", "Spank the monkey"]`。
 
-在下一行，我们在一个分派的串列中寻到我们的指令是哪个。由于 `"add"` 指向 `add`，我们的结果便是 `Just add`。我们再度使用了 pattern matching 来把我们的函数从 `Maybe` 中取出。但如果我们想要的指令不在分派的串列中呢？那样 lookup 就会回传 `Nothing`，但我们这边并不特别处理失败的情况，所以 pattern matching 会失败然后我们的程序就会当掉。
+在下一行，我们在一个分派的串列中寻到我们的指令是哪个。由于 `"add"` 指向 `add`，我们的结果便是 `Just add`。我们再度使用了 pattern matching 来把我们的函数从 `Maybe` 中取出。但如果我们想要的指令不在分派的串列中呢？那样 lookup 就会回传 `Nothing`，但我们这边并不特别处理失败的情况，所以 pattern matching 会失败然后我们的程序就会宕掉。
 
 最后，我们用剩下的引数调用 `action` 这个函数。他会还传一个加入 item，显示所有 items 或者删除 item 的 I/O action。由于这个 I/O action 是在 `main` 的 do block 中，他最后会被执行。如果我们的 `action` 函数是 `add`，他就会被喂 `args` 然后回传一个加入 `Spank the monkey` 到 todo.txt 中的 I/O action。
 
